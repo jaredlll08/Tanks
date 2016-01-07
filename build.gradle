@@ -1,0 +1,61 @@
+
+apply plugin: 'base' // To add "clean" task to the root project.
+apply from: 'configuration.gradle'
+
+subprojects {
+    apply from: rootProject.file('common.gradle')
+}
+
+task wrapper(type: Wrapper, description: 'Creates and deploys the Gradle wrapper to the current directory.') {
+    gradleVersion = '2.10'
+}
+
+subprojects.each { subproject -> evaluationDependsOn( subproject.path ) }
+
+task setupDecompWorkspaceAll(dependsOn: projects1710.collect { ':' + it + ":setupDecompWorkspace" } + projects189.collect { ':' + it + ':setupDecompWorkspace'}) {}
+
+task assembleMC1710(type: Jar, dependsOn: [
+		projects1710.collect { ':' + it + ":build" }]) {
+	archiveName="Tanks-1.7.10-${tanksVersion}.jar"
+	
+	for (p in projects1710) {
+		from zipTree(project(p).jar.archivePath)
+	}
+}
+
+task assembleMC18(type: Jar, dependsOn: [
+		projects189.collect { ':' + it + ":build" }]) {
+	archiveName="Tanks-1.8.9-${tanksVersion}.jar"
+	
+
+	for (p in projects189) {
+		from zipTree(project(p).jar.archivePath)
+	}
+}
+
+task assembleDevBase1710(type: Jar, dependsOn: [
+		':Tanks-MC1710:build']) {
+	archiveName="Tanks-1.7.10-${tanksVersion}-dev.jar"
+	
+	from project(':Tanks-MC1710').sourceSets.main.output
+}
+
+task assembleDevBase18(type: Jar, dependsOn: [
+		':Tanks-MC189:build']) {
+	archiveName="Tanks-1.8.9-${tanksVersion}-dev.jar"
+
+	from project(':Tanks-MC189').sourceSets.main.output
+}
+
+
+
+
+task assembleAll(dependsOn: [
+	assembleMC1710,
+	assembleMC18,
+	assembleDevBase1710,
+	assembleDevBase18]) {
+	
+}
+
+

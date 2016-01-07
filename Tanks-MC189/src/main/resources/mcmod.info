@@ -1,0 +1,16 @@
+[
+{
+  "modid": "tanks",
+  "name": "Tanks",
+  "description": "Simple Tank mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Jaredlll08"],
+  "credits": "MrBurd for his amazing model!",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
