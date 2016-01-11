@@ -1,1 +1,3 @@
-tile.tank.name=Tank
+itemGroup.tanks=Tanks!
+
+tile.Tank.name=Tank
