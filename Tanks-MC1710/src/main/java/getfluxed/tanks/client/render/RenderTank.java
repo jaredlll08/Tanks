@@ -1,9 +1,11 @@
 package getfluxed.tanks.client.render;
 
+import java.awt.Color;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
+import fluxedCore.handlers.ClientEventHandler;
 import getfluxed.tanks.tileentities.fluids.TileEntityFluidTank;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -31,6 +33,26 @@ public class RenderTank extends TileEntitySpecialRenderer {
     }
 
     public void renderTile(TileEntityFluidTank tile, double x, double y, double z) {
+        GL11.glPushMatrix();
+        GL11.glTranslatef((float) x + 0.5f, (float) y + 1.50f, (float) z + 0.5f);
+        GL11.glRotatef(180f, 1, 0, 0);
+        GL11.glRotatef(tile.getBlockMetadata() * 90, 0, 1, 0);
+        mc.getTextureManager().bindTexture(new ResourceLocation("tanks", "textures/models/modelTank.png"));
+        Color col = new Color(tile.colour);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glBlendFunc(770, 771);
+        if (tile.colour < 0) {
+            GL11.glColor4d(ClientEventHandler.getRed(), ClientEventHandler.getGreen(), ClientEventHandler.getBlue(), 1);
+        } else {
+            GL11.glColor4d(col.getRed() / 255.0, col.getGreen() / 255.0, col.getBlue() / 255.0, 1);
+        }
+        model.render(size);
+        GL11.glBlendFunc(770, 771);
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glPopMatrix();
+        
         if (tile.tank.getFluid() != null) {
             GL11.glPushMatrix();
             GL11.glDisable(GL11.GL_LIGHTING);
@@ -43,15 +65,7 @@ public class RenderTank extends TileEntitySpecialRenderer {
             GL11.glPopMatrix();
 
         }
-        GL11.glPushMatrix();
-        GL11.glDisable(GL11.GL_LIGHTING);
-        GL11.glTranslatef((float) x + 0.5f, (float) y + 1.50f, (float) z + 0.5f);
-        GL11.glRotatef(180f, 1, 0, 0);
-        GL11.glRotatef(tile.getBlockMetadata() * 90, 0, 1, 0);
-        mc.getTextureManager().bindTexture(new ResourceLocation("tanks", "textures/models/modelTank.png"));
-        GL11.glColor4d(0.7, 0.7, 0.7, 1);
-        model.render(size);
-        GL11.glPopMatrix();
+      
     }
 
     public static void renderFluid(FluidStack stack) {

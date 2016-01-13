@@ -12,6 +12,7 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
@@ -27,6 +28,7 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class BlockTank extends Block implements ITileEntityProvider {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
@@ -39,7 +41,6 @@ public class BlockTank extends Block implements ITileEntityProvider {
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setHardness(2f);
         setHarvestLevel("pickaxe", 2);
-
     }
 
     @Override
@@ -132,6 +133,118 @@ public class BlockTank extends Block implements ITileEntityProvider {
             FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(current);
 
             boolean hasFluid = currentFluid != null;
+
+            if (player.getCurrentEquippedItem().getItem() instanceof ItemDye) {
+
+                for (int i : OreDictionary.getOreIDs(current)) {
+                    System.out.println(OreDictionary.getOreNames()[i]);
+                    String ore = OreDictionary.getOreNames()[i];
+
+                    if (ore.toLowerCase().toLowerCase().startsWith("dye")) {
+                        System.out.println("done");
+                        String dict = ore.toLowerCase().replace("dye", "");
+                        if (dict.equals("black")) {
+                            int col = ItemDye.dyeColors[0];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                                tank.colour = ItemDye.dyeColors[0];
+                        } else if (dict.equals("red")) {
+                            int col = ItemDye.dyeColors[1];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[1];
+                        } else if (dict.equals("green")) {
+                            int col = ItemDye.dyeColors[2];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[2];
+                        } else if (dict.equals("brown")) {
+                            int col = ItemDye.dyeColors[3];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[3];
+                        } else if (dict.equals("blue")) {
+                            int col = ItemDye.dyeColors[4];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[4];
+                        } else if (dict.equals("purple")) {
+                            int col = ItemDye.dyeColors[5];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[5];
+                        } else if (dict.equals("cyan")) {
+                            int col = ItemDye.dyeColors[6];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[6];
+                        } else if (dict.equals("lightgray")) {
+                            int col = ItemDye.dyeColors[7];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[7];
+                        } else if (dict.equals("gray")) {
+                            int col = ItemDye.dyeColors[8];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[8];
+                        } else if (dict.equals("pink")) {
+                            int col = ItemDye.dyeColors[9];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[9];
+                        } else if (dict.equals("lime")) {
+                            int col = ItemDye.dyeColors[10];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[10];
+                        } else if (dict.equals("yellow")) {
+                            int col = ItemDye.dyeColors[11];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[11];
+                        } else if (dict.equals("lightblue")) {
+                            int col = ItemDye.dyeColors[12];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[12];
+                        } else if (dict.equals("magenta")) {
+                            int col = ItemDye.dyeColors[13];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[13];
+                        } else if (dict.equals("orange")) {
+                            int col = ItemDye.dyeColors[14];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[14];
+                        } else if (dict.equals("white")) {
+                            int col = ItemDye.dyeColors[15];
+                            if (col == tank.colour) {
+                                tank.colour = -1;
+                            } else
+                            tank.colour = ItemDye.dyeColors[15];
+                        }
+                    }
+
+                }
+
+            }
             if (hasFluid) {
                 if (FluidContainerRegistry.isFilledContainer(current)) {
                     Fluid containerFluid = FluidContainerRegistry.getFluidForFilledItem(current).getFluid();
@@ -218,10 +331,10 @@ public class BlockTank extends Block implements ITileEntityProvider {
         return false;
     }
 
-     @Override
-     public int getRenderType() {
-     return -1;
-     }
+    @Override
+    public int getRenderType() {
+        return -1;
+    }
 
     @Override
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {

@@ -1,1 +1,2 @@
-tile.tank.name=Tank
+tile.Tank.name=Tank
+itemGroup.tanks=Tanks

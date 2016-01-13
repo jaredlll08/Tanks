@@ -20,6 +20,8 @@ public class TileEntityFluidTank extends TileEntity implements IFluidHandler {
 	public FluidStack prevFluid;
 	public int initPer;
 
+    public int colour = 0xFFFFFF;
+    
 	public TileEntityFluidTank() {
 		tank = new FluidTank(32000);
 		prevAmount = 0;
@@ -68,6 +70,7 @@ public class TileEntityFluidTank extends TileEntity implements IFluidHandler {
 		tank.writeToNBT(tankTag);
 		nbt.setTag("tank", tankTag);
 		nbt.setInteger("prev", prevAmount);
+		nbt.setInteger("colour", colour);
 	}
 
 	@Override
@@ -76,6 +79,7 @@ public class TileEntityFluidTank extends TileEntity implements IFluidHandler {
 		NBTTagCompound tankTag = nbt.getCompoundTag("tank");
 		this.tank.readFromNBT(tankTag);
 		this.prevAmount = nbt.getInteger("prev");
+		 this.colour = nbt.getInteger("colour");
 	}
 
 	
