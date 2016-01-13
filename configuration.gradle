@@ -3,7 +3,7 @@
 // ### Global settings ###
 // #######################
 
-ext.tanksVersion = "1.0.3"
+ext.tanksVersion = "1.0.4"
 
 // #######################
 // ### 1.7.10 settings ###

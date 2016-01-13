@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-@Mod(modid = "tanks", name = "Tanks", version = "1.0.1", dependencies="required-after:fluxedcore")
+@Mod(modid = "tanks", name = "Tanks", version = "1.0.4", dependencies="required-after:fluxedcore")
 public class Tanks {
 	@Instance("tanks")
 	public static Tanks instance;
@@ -32,11 +32,6 @@ public class Tanks {
 
 		TankBlocks.preInit();
 		PacketHandler.init();
-//		if (e.getSide() == Side.CLIENT) {
-//			OBJLoader.instance.addDomain("tanks");
-//			Item item2 = Item.getItemFromBlock(TankBlocks.tank);
-//			ModelLoader.setCustomModelResourceLocation(item2, 0, new ModelResourceLocation("tanks:tank", "inventory"));
-//		}
 	}
 
 	@EventHandler

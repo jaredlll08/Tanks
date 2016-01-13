@@ -15,7 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-@Mod(modid = "tanks", name = "Tanks", version = "1.0.2", dependencies = "required-after:fluxedcore")
+@Mod(modid = "tanks", name = "Tanks", version = "1.0.4", dependencies = "required-after:fluxedcore")
 public class Tanks {
     @Instance("tanks")
     public static Tanks instance;
