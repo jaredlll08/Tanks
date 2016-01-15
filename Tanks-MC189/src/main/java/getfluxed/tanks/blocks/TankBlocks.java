@@ -1,7 +1,5 @@
 package getfluxed.tanks.blocks;
 
-import java.util.Map;
-
 import getfluxed.tanks.blocks.BlockTankFluid.TileEntityTopTank;
 import getfluxed.tanks.tileentities.fluids.TileEntityFluidTank;
 import getfluxed.tanks.tileentities.fluids.TileEntityTank;

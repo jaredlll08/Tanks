@@ -7,7 +7,6 @@ import org.lwjgl.opengl.GL11;
 import fluxedCore.handlers.ClientEventHandler;
 import getfluxed.tanks.tileentities.fluids.TileEntityFluidTank;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -73,8 +72,8 @@ public class RenderTank extends TileEntitySpecialRenderer<TileEntityFluidTank> {
 
         ResourceLocation textureRL = fluid.getStill();
         TextureAtlasSprite texture = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getModelManager().getTextureMap().getAtlasSprite(textureRL.getResourceDomain() + ":" + textureRL.getResourcePath());// getgetItemModel(new
-                                                                                                                                                                                                                       // ItemStack(Blocks.stained_glass)).getParticleTexture();
-
+                                                                                                                                                                                                                      // ItemStack(Blocks.stained_glass)).getParticleTexture();
+        
         // TextureAtlasSprite texture = TextureAtlasSprite.
         final int color;
 
@@ -87,7 +86,6 @@ public class RenderTank extends TileEntitySpecialRenderer<TileEntityFluidTank> {
             color = 0xFFFFFFFF;
         }
 
-        WorldRenderer t = Tessellator.getInstance().getWorldRenderer();
         double liquid = stack.amount + 0.0;
         double maxLiquid = 32000.0;
         double height = (liquid / maxLiquid) * 0.76;
